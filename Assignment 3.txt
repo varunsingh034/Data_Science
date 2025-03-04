@@ -1,0 +1,142 @@
+1. Write a lambda function to merge two lists into a dictionary where 
+one list represents keys and the other represents values.
+
+ANS:
+Imagine you have two shopping lists. One list has the names of items, and the other has their prices. We want to combine them into a handy "dictionary" where you can look up the price of an item by its name.
+
+keys = ["apple", "banana", "cherry"]
+values = [1.00, 0.50, 2.00]
+
+merge_lists = lambda k, v: dict(zip(k, v))
+
+result_dict = merge_lists(keys, values)
+print(result_dict)  # Output: {'apple': 1.0, 'banana': 0.5, 'cherry': 2.0}
+
+
+2. Create a class Product with instance variables name and price. Also, 
+add a class variable discount_rate and a method to calculate the 
+discounted price.
+
+ANS:
+Let's say we're building a little online store. We need a way to represent products, their prices, and apply discounts.
+
+class Product:
+    discount_rate = 0.10  # 10% discount for all products
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def calculate_discounted_price(self):
+        discount_amount = self.price * Product.discount_rate
+        return self.price - discount_amount
+
+
+3. Create a base class Shape with a method area(). Derive two 
+subclasses Circle and Rectangle, each implementing their own area() 
+method. (INHERITANCE)
+
+ANS:
+
+class Shape:
+    def area(self):
+        pass  # We'll fill this in for specific shapes
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius * self.radius
+
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+4. Create two base classes Person and Employee, and derive a class 
+Manager from both. (MULTIPLE INHERITANCE)
+
+ANS:
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def introduce(self):
+        print(f"Hi, I'm {self.name}.")
+
+class Employee:
+    def __init__(self, employee_id):
+        self.employee_id = employee_id
+
+    def show_employee_id(self):
+        print(f"Employee ID: {self.employee_id}")
+
+class Manager(Person, Employee):
+    def __init__(self, name, employee_id, department):
+        Person.__init__(self, name)
+        Employee.__init__(self, employee_id)
+        self.department = department
+
+    def manage(self):
+        print(f"{self.name} manages the {self.department} department.")
+
+5. Implement a function play_sound() that accepts different animal 
+objects (Dog, Cat, Cow) and calls their make_sound() method 
+dynamically. (POLYMORPHISM)
+
+ANS:
+class Dog:
+    def make_sound(self):
+        print("Woof!")
+
+class Cat:
+    def make_sound(self):
+        print("Meow!")
+
+class Cow:
+    def make_sound(self):
+        print("Moo!")
+
+def play_sound(animal):
+    animal.make_sound()
+
+
+
+6. Design a Car Rental System using Object-Oriented Programming 
+(OOP) in Python. The system should include a Vehicle class and 
+derived classes Car and Bike. Implement constructors and use 
+inheritance to manage common and specific attributes.
+
+ANS:
+
+class Vehicle:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        print(f"{self.year} {self.make} {self.model}")
+
+class Car(Vehicle):
+    def __init__(self, make, model, year, num_doors):
+        super().__init__(make, model, year)
+        self.num_doors = num_doors
+
+    def display_info(self):
+        super().display_info()
+        print(f"Number of doors: {self.num_doors}")
+
+class Bike(Vehicle):
+    def __init__(self, make, model, year, engine_size):
+        super().__init__(make, model, year)
+        self.engine_size = engine_size
+
+    def display_info(self):
+        super().display_info()
+        print(f"Engine size: {self.engine_size}cc")
